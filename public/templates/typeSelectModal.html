@@ -1,0 +1,23 @@
+<div class="modal-header">
+        <button type="button" ng-click="cancel() " class="close" >&times;</button>
+         <h3 class="modal-title">Выбрать тип</h3>
+    </div>
+    <div class="modal-body">
+        <div ng-show="types.length">
+            <input class="form-control" placeholder=" поиск по вхождению " type="text" ng-model="searchType">
+
+            <div ng-repeat="type in types|filter:searchType" class="radio">
+              <label>
+                    <input type="radio" name="type" class="type" ng-value="type" ng-model="$parent.selectedType">
+                    <span>
+                        <p class="typeSelectInfo">{{type.name}}</p>
+                    </span>
+              </label>
+            </div> 
+        </div>
+        <div ng-show="!types.length" class="alert alert-danger text-center"> Список типов пуст </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-show="types.length" type="button" ng-click="selectType()">Добавить</button>
+        <button type="button" class="btn btn-primary" ng-show="!types.length" ng-click="cancel() " class="close" >Хорошо</button>
+</div>

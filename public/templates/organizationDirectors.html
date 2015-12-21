@@ -1,0 +1,29 @@
+<div class="refBookDiv">
+	<button class=" btn btn-success" ng-click="open()">Добавить</button>
+	<table ng-show="directors.length" class=" table table-striped table-hover text-center">
+		<thead>
+			<tr>
+				<td> Имя </td>
+				<td> Фамилия </td>
+				<td> Отчество </td>
+				<td> </td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="director in directors">
+				<td>
+					<span class="dirInfo">{{director.name}}</span>
+				</td>
+				<td>
+					<span class="dirInfo">{{director.surname}}</span>
+				</td>
+				<td>
+					<span class="dirInfo">{{director.patronymic}}</span>
+				</td>
+				<td class="text-right">
+					<button class="btn btn-danger" ng-click = "deleteDirector(director._id)">Удалить</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

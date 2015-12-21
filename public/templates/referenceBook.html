@@ -1,0 +1,16 @@
+ <div class="conainer-fluid" ng-cloak>
+	<div class="refBookRow row-fluid">
+		<div class="col-md-4 col-sm-4 col-xs-12 text-left refBookTabs">
+			<uib-tabset vertical="true" type="pills">
+				<uib-tab ng-click= "setTab(0) " heading="Типы организаций">	
+			    </uib-tab>
+			    <uib-tab ng-click=" setTab(1) " heading="Пользователи">
+			    </uib-tab>
+			</uib-tabset>
+		</div>
+		<div class=" col-md-8 col-sm-8 col-xs-12">
+			<div ng-show="showDirectors"  ui-view="directors"> </div>
+			<div ng-show="showTypes" ui-view="types"> </div>
+		</div>
+	</div>
+</div>

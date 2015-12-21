@@ -1,0 +1,95 @@
+<div ng-cloak class="container-fluid">
+
+	<div class="row-fluid organizationMain">	
+
+		<div class="col-md-4 col-sm-4 col-xs-12 text-left">
+
+			<button class="btn btn-success" ng-click="updateAddNewOrganizationPanel()">Добавить</button>
+			<button ng-disabled="!deleteId" class="btn btn-danger" ng-click="deleteOrganization(deleteId)">Удалить</button>
+			<div>
+				<button class="col-md-12 col-xs-12 col-sm-12 orgButton btn btn-primary" ng-click="updateEditPanel(organization._id)" ng-repeat="organization in organizations">{{organization.name}}</button>
+			</div>
+	  	</div>
+
+	  	<div class="col-md-8 col-sm-8 col-xs-12" ng-class="(organization._id) ? 'orgEditDiv' : 'orgAddDiv'">
+			<form class="form-horizontal" ng-submit="editOrAddOrganization(organization._id)">
+				<div class="form-group">
+					<div class="col-md-12 col-sm-12">	
+						<input  class="form-control " placeholder="Наименование организации" required ng-model="organization.name" type="text" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="information" class="col-sm-2 col-md-2 control-label">Сведения</label>
+					<div class="col-md-5 col-sm-5">
+								<textarea class="form-control" placeholder="сведения об организации" id="information" ng-model = "organization.information" rows="3"></textarea>	
+					</div>
+					<div class="col-md-5 col-sm-5">
+						<div class="form-group">
+							<label for="address" class="col-sm-3 col-md-3 control-label">Адрес</label>
+							<div class="col-md-8 col-sm-8 col-sm-offset-1">
+								<input class="form-control" ng-model = "organization.address" id="address" type="text">	
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="phone" class="col-sm-3 col-md-3 control-label">Телефон</label>
+							<div class="col-md-8 col-sm-8 col-sm-offset-1">
+								<input class="form-control" ng-model = "organization.phone" id="phone" type="text">		
+							</div>
+						</div>
+					</div>	
+				</div>
+
+				<div class="form-group">
+						<label for="empCount" class="col-sm-2 col-md-2 control-label">Кол. сотрудников</label>
+						<div class="col-md-3 col-sm-3">
+								<input class="form-control" ng-model = "organization.employeeCount" id="empCount" type="number">
+						</div>
+				</div>
+
+				<div class="form-group">
+						<label for="addInformation" class="col-md-2 col-sm-2 control-label">Доп. информация</label>
+						<div class="col-md-10 col-sm-10">
+							<textarea class="form-control" placeholder="дополнительная организация" id="addInformation" ng-model= "organization.additionalInformation" rows="3"></textarea>
+						</div>
+				</div>
+
+				<div class="form-group">
+					<label for="addInformation" class="col-md-2 col-sm-2 col-xs-12 control-label">Тип</label>
+					<div class="col-md-3 col-sm-3 col-xs-8">
+						<input type="text" class="form-control" placeholder="из справочника" ng-disabled="true" ng-model="organization.type.name">
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<button type="button" class="btn btn-default" ng-click="openTypeSelectModal()">...</button>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="addInformation" class="col-md-2 col-xs-12 col-sm-2 control-label">Управляющий</label>
+					<div class="col-md-3 col-sm-3 col-xs-8">
+							<input type="text" class="form-control" placeholder="из справочника" ng-disabled="true" ng-model="organization.directorName">
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+							<button type="button" class="btn btn-default" ng-click="openDirectorSelectModal()">...</button>
+					</div>
+					<div class="form-group">
+						<div class="col-md-4 col-sm-4 col-xs-12 col-sm-offset-1">
+							<div class="col-xs-12">
+								<input type="date" class=" form-control" ng-model="organization.creationDate" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+	            <div class="form-group ">
+	            	<div class="col-md-12 col-sm-12 text-right">
+		            	<button class="btn btn-success" ng-show="!organization._id" type="submit">Добавить </button>
+						<button class="btn btn-success" ng-show="organization._id" type="submit">Сохранить </button>
+					</div>
+	            </div>
+				
+			</form>
+		</div>
+
+	</div>
+
+</div>

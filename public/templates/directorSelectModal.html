@@ -1,0 +1,42 @@
+<div class="modal-header">
+        <button type="button" ng-click="cancel() " class="close" >&times;</button>
+        <h3 class="modal-title">Выбрать сотрудника</h3>
+</div>
+<div class="modal-body">
+    <div ng-show="directors.length">
+		<input type="text" class="form-control" placeholder="поиск по вхождению" ng-model="searchDirector">
+        <table class= "selectDirector table table-striped table-hover text-center">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td> <b>Имя </b></td>
+                    <td> <b>Фамилия </b></td>
+                    <td> <b>Отчество</b> </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="director in directors|filter:searchDirector">
+                    <td>
+                        <input type="radio" name="dir" ng-value="director" ng-model="$parent.selectedDirector">
+                    </td>
+                    <td>
+                        <p class="dirSelectInfo">{{director.name}}</p>
+                    </td>
+                    <td>
+                        <p class="dirSelectInfo">{{director.surname}}</p>
+                    </td>
+                    <td>
+                        <p class="dirSelectInfo">{{director.patronymic}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="!directors.length" class="alert alert-danger text-center">
+        Список сотрудников пуст 
+    </div>
+</div>
+<div class="modal-footer">
+        <button ng-click="selectDirector()" ng-show="directors.length" class="btn btn-primary" type="button">Добавить</button>
+        <button type="button" class="btn btn-primary" ng-show="!directors.length" ng-click="cancel() " class="close" >Хорошо</button>
+</div>

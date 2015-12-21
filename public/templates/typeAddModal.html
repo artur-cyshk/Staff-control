@@ -1,0 +1,18 @@
+<form class="form-horizontal text-center" ng-submit="addNewType()">
+    <div class="modal-header">
+        <button type="button" ng-click="cancel() " class="close" >&times;</button>
+        <h3 class="modal-title">Добавить тип</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Тип</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" id="name" required ng-model="type.name">
+                <div class=" errDiv" ng-if="dupError">Такое тип уже существует</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" type="button">Добавить</button>
+    </div>
+</form>

@@ -1,0 +1,96 @@
+* {
+    font-family: monospace, tahoma, arial, verdana, sans-serif, Lucida Sans ;
+    font-size: 13px;
+    box-sizing: border-box ;
+}
+.errDiv{
+	color: red;
+	text-align: center;
+}
+
+.refBookTabs{
+	margin-bottom: 5px;
+}
+.orgAddDiv,.refBookDiv{
+	padding: 5px;
+	background: #D6D6D6;
+    border-radius: 5px;
+}
+.refBookDiv{
+	min-width: 420px;
+}
+.homeDiv{
+	min-width: 250px;
+}
+.organizationMain{
+	padding: 5px;
+}
+.orgEditDiv{
+	padding: 5px;
+    background: #676666;
+    border-radius: 5px;
+    color: white;
+}
+.orgButton {
+	margin:2px 0 !important;
+}
+p.dirSelectInfo,p.typeSelectInfo{
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    max-width: 50px;
+    margin: 0;
+    padding: 0;
+}
+p.typeSelectInfo{
+	max-width: 150px;
+}
+.control-label{
+	padding-top: 0 !important;
+}
+.orgButton:focus{
+	background: rgba(2, 5, 74, 1) !important;
+    border-color: rgba(2, 5, 74, 1) !important;
+}
+.nameSpan ,.confirmInfo,.wrapSpan,.dirInfo{
+	word-wrap : break-word;
+}
+.wrapSpan{
+	display:block;
+	max-width: 300px;
+}
+.dirInfo{
+	display : block;
+	margin : 0 auto;
+	max-width: 150px;
+}
+textarea {
+	resize : none;
+}
+.refBookRow{
+	padding-top : 5px;
+	margin : 0 15px;
+}
+.mainNav:hover{
+	 cursor: pointer;
+}
+.table{
+	margin-top : 5px;
+}
+.table td,.table th {
+	vertical-align: middle !important;
+}
+div.radio { 
+    background: #ECEAEA;
+    padding: 5px;
+    border-radius: 8px;
+}
+div.radio label{
+	display:block; 
+	width: 100%;
+}
+
+.type:checked + span{ 
+	color: #337AB7;
+	font-weight: bold;
+};

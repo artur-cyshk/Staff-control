@@ -1,0 +1,29 @@
+<form class="form-horizontal text-center" ng-submit="addNewDirector()">
+    <div class="modal-header">
+        <button type="button" ng-click="cancel() " class="close" >&times;</button>
+        <h3 class="modal-title">Добавить сотрудника</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">Имя</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="name" type="text" required ng-model="director.name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="surname" class="col-sm-4 control-label">Фамилия</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="surname" type="text" required ng-model="director.surname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="patronymic" class="col-sm-4 control-label">Отчество</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="patronymic" type="text" required ng-model="director.patronymic">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" type="button">Добавить</button>
+    </div>
+</form>

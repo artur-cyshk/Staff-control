@@ -1,0 +1,29 @@
+{
+  "name": "organization",
+  "version": "1.0.0",
+  "description": "mainsoft task",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^1.5.0",
+    "body-parser": "^1.14.1",
+    "mongoose": "^4.3.3",
+    "morgan": "^1.6.1",
+    "express": "^4.13.3",
+    "http": "^0.0.0",
+    "mongodb": "^2.0.52"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ogrefifas/organizationApp.git"
+  },
+  "author": "Artur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ogrefifas/organizationApp/issues"
+  },
+  "homepage": "https://github.com/ogrefifas/organizationApp#readme"
+}
