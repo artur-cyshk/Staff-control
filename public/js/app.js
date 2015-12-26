@@ -1,6 +1,4 @@
-var app = angular.module('organizations', [
-	'ui.router','ui.bootstrap'
-]);
+var app = angular.module('organizations', ['ui.router', 'ui.bootstrap', 'restangular']);
 
 app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
         $urlRouterProvider.otherwise('/organization');
@@ -18,16 +16,12 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
                 url: '/referenceBook',
                 views: {
 
-                    // the main template will be placed here (relatively named)
                     '': { templateUrl:  '/templates/referenceBook.html', controller : 'ReferenceBookCtrl' },
 
-                    // the child views will be defined here (absolutely named)
-                    'directors@home.referenceBook': { 
+                      'directors@home.referenceBook': { 
                         templateUrl: '/templates/organizationDirectors.html',
                         controller : 'DirectorsCtrl'
                      },
-
-                    // for column two, we'll define a separate controller 
                     'types@home.referenceBook': { 
                         templateUrl: '/templates/organizationTypes.html',
                         controller : 'TypesCtrl'

@@ -1,14 +1,24 @@
 app.controller('TypesCtrl', [ '$scope', 'ReferenceBookService', '$uibModal', function($scope, ReferenceBookService, $uibModal){
-	ReferenceBookService.getTypes().success(function(data,status){
-		$scope.types = data;
-	}).error(function(data,status){
+	ReferenceBookService.types().getList()
+		.then(
+			function success( data, status ) {
+				$scope.types = data;
+			}
+		)
 
-	})
-	$scope.deleteType = function (id){
-		ReferenceBookService.deleteType(id).success(function(data,status){
-			$scope.types = $scope.types.filter(function( item ){
-				return (item._id === id) ? false : true;
-			})
+	$scope.deleteType = function ( id ) {
+		$scope.types.forEach( function( type ) {
+			if(type._id === id){
+				type.id = type._id;
+				type.remove()
+					.then(
+						function success() {
+							$scope.types = $scope.types.filter( function( item ) {
+								return ( item._id === id ) ? false : true;
+							})
+						}
+					)
+			}
 		})
 	}
 	$scope.open = function () {
@@ -20,7 +30,7 @@ app.controller('TypesCtrl', [ '$scope', 'ReferenceBookService', '$uibModal', fun
 	    });
 
 	    modalInstance.result.then(function (type) {
-	      $scope.types.push(type);
+	      $scope.types.push( type );
 	    });
   	};
 }]);
