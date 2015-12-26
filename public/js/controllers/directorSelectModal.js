@@ -1,7 +1,9 @@
 app.controller('DirectorSelectModalCtrl', [ '$scope', 'ReferenceBookService', '$uibModalInstance', function($scope, ReferenceBookService, $uibModalInstance){
-	ReferenceBookService.getDirectors().success( function( data ) {
-		$scope.directors = data;
-	})
+	ReferenceBookService.directors()
+		.then(
+			function( data ) {
+				$scope.directors = data;
+			})
 	$scope.selectDirector = function() {
 		$uibModalInstance.close( $scope.selectedDirector );		
 	}
