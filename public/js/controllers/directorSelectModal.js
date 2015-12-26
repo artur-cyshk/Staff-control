@@ -1,5 +1,5 @@
 app.controller('DirectorSelectModalCtrl', [ '$scope', 'ReferenceBookService', '$uibModalInstance', function($scope, ReferenceBookService, $uibModalInstance){
-	ReferenceBookService.directors()
+	ReferenceBookService.directors().getList()
 		.then(
 			function( data ) {
 				$scope.directors = data;

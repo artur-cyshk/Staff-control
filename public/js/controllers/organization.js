@@ -134,11 +134,8 @@ app.controller('OrganizationCtrl', [ '$scope', 'OrganizationService', '$uibModal
 	function editOrganization (id) {
 		$scope.organizations.forEach(function( organization ) {
 			if( organization._id === id ) {
-				var newOrganization = Restangular.copy( organization );
-				for( var key in $scope.organization ) {
-					newOrganization[key] = $scope.organization[key];
-				}
-				newOrganization.id = $scope.organization._id;
+				var newOrganization = Restangular.copy( $scope.organization );
+				newOrganization.id = id;
 				newOrganization.put()
 					.then(
 						function success() {

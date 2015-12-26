@@ -1,5 +1,5 @@
 app.controller('TypeSelectModalCtrl', [ '$scope', 'ReferenceBookService', '$uibModalInstance', function($scope, ReferenceBookService, $uibModalInstance){
-	ReferenceBookService.types()
+	ReferenceBookService.types().getList()
 		.then( 
 			function success( data ) {
 				$scope.types = data;
