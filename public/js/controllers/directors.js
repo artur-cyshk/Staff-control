@@ -3,6 +3,7 @@ app.controller('DirectorsCtrl', [ '$scope', 'ReferenceBookService', '$uibModal',
 		.then(
 			function success( data ) {
 				$scope.directors = data;
+				$scope.active = true;
 			}
 		)
 

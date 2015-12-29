@@ -3,6 +3,7 @@ app.controller('TypesCtrl', [ '$scope', 'ReferenceBookService', '$uibModal', fun
 		.then(
 			function success( data, status ) {
 				$scope.types = data;
+				$scope.active = true;
 			}
 		)
 

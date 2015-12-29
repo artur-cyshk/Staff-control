@@ -1,29 +1,41 @@
-<div class="refBookDiv">
-	<button class=" btn btn-success" ng-click="open()">Добавить</button>
-	<table ng-show="directors.length" class=" table table-striped table-hover text-center">
-		<thead>
-			<tr>
-				<td> Имя </td>
-				<td> Фамилия </td>
-				<td> Отчество </td>
-				<td> </td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="director in directors">
-				<td>
-					<span class="dirInfo">{{director.name}}</span>
-				</td>
-				<td>
-					<span class="dirInfo">{{director.surname}}</span>
-				</td>
-				<td>
-					<span class="dirInfo">{{director.patronymic}}</span>
-				</td>
-				<td class="text-right">
-					<button class="btn btn-danger" ng-click = "deleteDirector(director._id)">Удалить</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<div class="refBookDiv text-center" ng-show ="active">
+	<span ng-if="!directors.length" class="addIconEmpty glyphicon glyphicon-plus" ng-click="open()"></span>
+	<span ng-if="directors.length" class="addIcon glyphicon glyphicon-plus" ng-click="open()"></span>
+	<div style = "clear : both"></div>
+	<div class="director text-center" ng-repeat="director in directors">
+		<span class="glyphicon glyphicon-remove delIcon" ng-click="deleteDirector(director._id)"></span>
+		<div class="directorName">
+				<table ng-show="directors.length" class=" table table-striped table-hover text-center">
+				<thead>
+					<tr>
+						<th> Имя </th>
+						<th> Фамилия </th>
+						<th> Отчество </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<td>
+							<div class="dir">
+								<p class="dirName">{{director.name}}</p>
+							</div>
+							
+						</td>
+						<td>
+							<div class="dir">
+								<p class="dirName">{{director.surname}}</p>
+							</div>
+						</td>
+						<td>
+							<div class="dir">
+								<p class="dirName">{{director.patronymic}}</p>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style = "clear : both"></div>
+	</div>
 </div>
+

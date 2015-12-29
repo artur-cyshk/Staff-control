@@ -1,93 +1,100 @@
-<div ng-cloak class="container-fluid">
+<div ng-cloak ng-hide ="!active" class="container-fluid orgContainer">
 
-	<div class="row-fluid organizationMain">	
+	<div class="row-fluid organizationMain text-center">	
 
-		<div class="col-md-4 col-sm-4 col-xs-12 text-left">
-
-			<button class="btn btn-success" ng-click="updateAddNewOrganizationPanel()">Добавить</button>
-			<button ng-disabled="!deleteId" class="btn btn-danger" ng-click="deleteOrganization(deleteId)">Удалить</button>
-			<div>
-				<button class="col-md-12 col-xs-12 col-sm-12 orgButton btn btn-primary" ng-click="updateEditPanel(organization._id)" ng-repeat="organization in organizations">{{organization.name}}</button>
+		<div class="col-md-4 col-sm-4 col-xs-12 text-center" ng-class="(organization._id || add) ? 'none' : 'organizationsDivCenter'">
+			<span ng-if="!organizations.length" class="addIconEmpty glyphicon glyphicon-plus" ng-click="updateAddNewOrganizationPanel()"></span>
+			<span ng-if="organizations.length" class="addIcon glyphicon glyphicon-plus" ng-click="updateAddNewOrganizationPanel()"></span>
+			<div style = "clear : both"></div>
+			<div class="org" ng-repeat="organization in organizations">
+				<span class="glyphicon glyphicon-remove delIcon" ng-click="deleteOrganization(organization._id)"></span>
+				<span class="glyphicon glyphicon-pencil editIcon" ng-click="updateEditPanel(organization._id)"></span>
+				<div class="orgName">{{organization.name}}</div>
+				<div style = "clear : both"></div>
 			</div>
 	  	</div>
 
-	  	<div class="col-md-8 col-sm-8 col-xs-12" ng-class="(organization._id) ? 'orgEditDiv' : 'orgAddDiv'">
-			<form class="form-horizontal" ng-submit="editOrAddOrganization(organization._id)">
-				<div class="form-group">
-					<div class="col-md-12 col-sm-12">	
-						<input  class="form-control " placeholder="Наименование организации" required ng-model="organization.name" type="text" >
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="information" class="col-sm-2 col-md-2 control-label">Сведения</label>
-					<div class="col-md-5 col-sm-5">
-								<textarea class="form-control" placeholder="сведения об организации" id="information" ng-model = "organization.information" rows="3"></textarea>	
-					</div>
-					<div class="col-md-5 col-sm-5">
-						<div class="form-group">
-							<label for="address" class="col-sm-3 col-md-3 control-label">Адрес</label>
-							<div class="col-md-8 col-sm-8 col-sm-offset-1">
-								<input class="form-control" ng-model = "organization.address" id="address" type="text">	
-							</div>
+	  	<div class="col-md-8 col-sm-8 col-xs-12 addEditPanel" ng-show="organization._id || add">
+	  		<div ng-class="(organization._id) ? 'orgEditDiv' : 'orgAddDiv'">
+		  		<span class="glyphicon glyphicon-remove delIcon " ng-click="closeAddPanel()"></span>
+		  		<div style="clear:both"></div>
+				<form class="form-horizontal orgForm" ng-submit="editOrAddOrganization(organization._id)">
+					<div class="form-group">
+						<div class="col-md-12 col-sm-12">	
+							<input  class="form-control " placeholder="Наименование организации" required ng-model="organization.name" type="text" >
 						</div>
-						<div class="form-group">
-							<label for="phone" class="col-sm-3 col-md-3 control-label">Телефон</label>
-							<div class="col-md-8 col-sm-8 col-sm-offset-1">
-								<input class="form-control" ng-model = "organization.phone" id="phone" type="text">		
-							</div>
-						</div>
-					</div>	
-				</div>
-
-				<div class="form-group">
-						<label for="empCount" class="col-sm-2 col-md-2 control-label">Кол. сотрудников</label>
-						<div class="col-md-3 col-sm-3">
-								<input class="form-control" ng-model = "organization.employeeCount" id="empCount" type="number">
-						</div>
-				</div>
-
-				<div class="form-group">
-						<label for="addInformation" class="col-md-2 col-sm-2 control-label">Доп. информация</label>
-						<div class="col-md-10 col-sm-10">
-							<textarea class="form-control" placeholder="дополнительная организация" id="addInformation" ng-model= "organization.additionalInformation" rows="3"></textarea>
-						</div>
-				</div>
-
-				<div class="form-group">
-					<label for="addInformation" class="col-md-2 col-sm-2 col-xs-12 control-label">Тип</label>
-					<div class="col-md-3 col-sm-3 col-xs-8">
-						<input type="text" class="form-control" placeholder="из справочника" ng-disabled="true" ng-model="organization.type.name">
-					</div>
-					<div class="col-md-1 col-sm-1 col-xs-1">
-						<button type="button" class="btn btn-default" ng-click="openTypeSelectModal()">...</button>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="addInformation" class="col-md-2 col-xs-12 col-sm-2 control-label">Управляющий</label>
-					<div class="col-md-3 col-sm-3 col-xs-8">
-							<input type="text" class="form-control" placeholder="из справочника" ng-disabled="true" ng-model="organization.directorName">
-					</div>
-					<div class="col-md-1 col-sm-1 col-xs-1">
-							<button type="button" class="btn btn-default" ng-click="openDirectorSelectModal()">...</button>
 					</div>
 					<div class="form-group">
-						<div class="col-md-4 col-sm-4 col-xs-12 col-sm-offset-1">
-							<div class="col-xs-12">
-								<input type="date" class=" form-control" ng-model="organization.creationDate" />
+						<label for="information" class="col-sm-3 col-md-2 control-label">Сведения</label>
+						<div class="col-md-5 col-sm-4">
+									<textarea class="form-control" placeholder="сведения об организации" id="information" ng-model = "organization.information" rows="3"></textarea>	
+						</div>
+						<div class="col-md-5 col-sm-5">
+							<div class="form-group">
+								<label for="address" class="col-sm-4 col-md-3 control-label">Адрес</label>
+								<div class="col-md-8 col-sm-7 col-sm-offset-1">
+									<input class="form-control" ng-model = "organization.address" id="address" type="text">	
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="phone" class="col-sm-4 col-md-3 control-label">Телефон</label>
+								<div class="col-md-8 col-sm-7 col-sm-offset-1">
+									<input class="form-control" ng-model = "organization.phone" id="phone" type="text">		
+								</div>
+							</div>
+						</div>	
+					</div>
+
+					<div class="form-group">
+							<label for="empCount" class="col-sm-3 col-md-2 control-label">Кол. сотрудников</label>
+							<div class="col-md-3 col-sm-3">
+									<input class="form-control" ng-model = "organization.employeeCount" id="empCount" type="number">
+							</div>
+					</div>
+
+					<div class="form-group">
+							<label for="addInformation" class="col-md-2 col-sm-3 control-label">Доп. информация</label>
+							<div class="col-md-10 col-sm-9">
+								<textarea class="form-control" placeholder="дополнительная организация" id="addInformation" ng-model= "organization.additionalInformation" rows="3"></textarea>
+							</div>
+					</div>
+
+					<div class="form-group">
+						<label for="addInformation" class="col-md-2 col-sm-3 col-xs-12 control-label">Тип</label>
+						<div class="col-md-3 col-sm-3 col-xs-8">
+							<input type="text" class="form-control" placeholder="из справочн." ng-disabled="true" ng-model="organization.type.name">
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
+							<button type="button" class="btn btn-default" ng-click="openTypeSelectModal()">...</button>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="addInformation" class="col-md-2 col-xs-12 col-sm-3 control-label">Управляющий</label>
+						<div class="col-md-3 col-sm-3 col-xs-8">
+								<input type="text" class="form-control" placeholder="из справочн." ng-disabled="true" ng-model="organization.directorName">
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
+								<button type="button" class="btn btn-default" ng-click="openDirectorSelectModal()">...</button>
+						</div>
+						<div class="form-group">
+							<div class="col-md-5 col-sm-3 col-sm-offset-1 col-xs-12 col-md-offset-1">
+								<div class="col-xs-12">
+										<input type="date" placeholder="дата" class=" form-control" ng-model="organization.creationDate" />
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				
-	            <div class="form-group ">
-	            	<div class="col-md-12 col-sm-12 text-right">
-		            	<button class="btn btn-success" ng-show="!organization._id" type="submit">Добавить </button>
-						<button class="btn btn-success" ng-show="organization._id" type="submit">Сохранить </button>
-					</div>
-	            </div>
-				
-			</form>
+					
+		            <div class="form-group ">
+		            	<div class="col-md-12 col-sm-12 text-center">
+			            	<button class="btn orgAddEditButton" ng-show="!organization._id" type="submit">Добавить </button>
+							<button class="btn orgAddEditButton" ng-show="organization._id" type="submit">Сохранить </button>
+						</div>
+		            </div>
+					
+				</form>
+			</div>
 		</div>
 
 	</div>

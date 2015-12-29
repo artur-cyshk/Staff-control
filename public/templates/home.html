@@ -1,7 +1,14 @@
 <div class="homeDiv">
-	<ul class="mainNav nav nav-tabs">
-	 	<li ui-sref="home.organization" ui-sref-active="active"><a>Организации</a></li>
-	    <li ui-sref="home.referenceBook" ui-sref-active="active"><a>Справочники</a></li>
-	</ul>
-	<div ui-view></div>
+		<div class="homeMenu">
+			<div class="header text-center">
+				<span style="float:left" class="glyphicon glyphicon-briefcase"></span>
+				<span class="headerName">Организации</span>
+				<div style="clear:both"></div>
+			</div>
+			<ul class="mainNav nav nav-tabs">
+			 	<li ui-sref="home.organization" ui-sref-active="active"><a>Организации</a></li>
+			    <li ui-sref="home.referenceBook" ui-sref-active="active"><a>Справочники</a></li>
+			</ul>
+			<ui-view></ui-view>
+		</div>
 </div>

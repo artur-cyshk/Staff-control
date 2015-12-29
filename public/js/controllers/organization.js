@@ -16,7 +16,7 @@ app.controller('OrganizationCtrl', [ '$scope', 'OrganizationService', '$uibModal
 
 	$scope.deleteOrganization = function ( id ) {
 		deleteOrganization( id );
-		deleteIdAndOrganizationInfo();
+		delete $scope.organization;
 	}
 
 	$scope.editOrAddOrganization = function ( id ) {
@@ -25,12 +25,19 @@ app.controller('OrganizationCtrl', [ '$scope', 'OrganizationService', '$uibModal
 		} else {
 			editOrganization ( id );
 		}
+		delete $scope.organization;
+		delete $scope.add;
 	}
 
 	$scope.updateAddNewOrganizationPanel = function () {
-		deleteIdAndOrganizationInfo();
+		$scope.add = true;
+		delete $scope.organization;
 	}
 
+	$scope.closeAddPanel = function(){
+		delete $scope.organization;
+		delete $scope.add;
+	}
 
 	$scope.openDirectorSelectModal = function () {
 	    var modalInstance = $uibModal.open({
@@ -76,11 +83,6 @@ app.controller('OrganizationCtrl', [ '$scope', 'OrganizationService', '$uibModal
 		    }
 	    });
   	};
-  	function deleteIdAndOrganizationInfo() {
-  		delete $scope.deleteId;
-		delete $scope.organization;
-  	}
-
 
   	function deleteOrganization ( id ) {
   		$scope.organizations.forEach( function( item ) {
@@ -105,7 +107,7 @@ app.controller('OrganizationCtrl', [ '$scope', 'OrganizationService', '$uibModal
 		OrganizationService.organizations().post( $scope.organization )
 			.then(
 				function success( item ) {
-					deleteIdAndOrganizationInfo();
+					delete $scope.organization;
 					openModalWithData('Организация успешно добавлена');
 					getOrganizations();
 				},
@@ -156,6 +158,7 @@ app.controller('OrganizationCtrl', [ '$scope', 'OrganizationService', '$uibModal
 				function success( data ) {
 					$scope.organizations = data;
 					addDirectorToOrganization( $scope.organizations );
+					$scope.active = true;
 				}
 			)
 		
